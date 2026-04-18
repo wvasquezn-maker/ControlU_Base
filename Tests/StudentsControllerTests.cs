@@ -55,9 +55,9 @@ public class StudentsControllerTests
         var controller = CreateController(nameof(Create_ValidStudent_ReturnsCreatedAtAction));
         var dto = new StudentCreateDto
         {
-            FirstName = "Juan",
-            LastName = "Perez",
-            Email = "nuevo@uni.edu",
+            FirstName = "William",
+            LastName = "Vasquez",
+            Email = "wvasquez@miumg.edu",
             StudentCode = "TST-002"
         };
 
@@ -65,7 +65,7 @@ public class StudentsControllerTests
 
         var created = Assert.IsType<CreatedAtActionResult>(result.Result);
         var student = Assert.IsType<StudentResponseDto>(created.Value);
-        Assert.Equal("Nuevo", student.FirstName);
+        Assert.Equal("William", student.FirstName);
         Assert.Equal("Estudiante", student.LastName);
         Assert.True(student.Id > 0);
     }
