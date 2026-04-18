@@ -1,0 +1,28 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurar dependencias
+        run: dotnet restore test1.sln
+
+      - name: Compilar proyecto
+        run: dotnet build test1.sln --no-restore --configuration Release
+
+      - name: Ejecutar pruebas
+        run: dotnet test test1.sln --no-build --configuration Release
